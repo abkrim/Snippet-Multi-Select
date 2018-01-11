@@ -1,28 +1,34 @@
 <template>
-	<div>
-		<dl id="categories">
-			<dt>
-				<label class="control-label">CATEGORÍAS</label>
-			</dt>
-			<dd>
-				<multiselect v-model="value"
-   					track-by="id" label="name" selectLabel="Click para seleccionar" deselect-label=""
-					:allow-empty="false"
-					:searchable="true"
-					:options="sortMainCategories"
-					:reset-after="false"
-					@select="dispatchActionCategory">
-				</multiselect>
-			</dd>
-		</dl>
-		<!-- <sub-categories v-if="showSubCategory" :subCategories="sortSubCategories"></sub-categories> -->
-	</div>
+	<div class="row">
+    <div class="col-lg-1 col-centered">
+      <dl id="categories">
+        <dt>
+          <label class="control-label">CATEGORÍAS</label>
+        </dt>
+        <dd>
+          <multiselect v-model="value"
+            track-by="id" label="name" 
+            selectLabel="Click para seleccionar" 
+            deselect-label=""
+            :allow-empty="false"
+            :searchable="true"
+            :options="sortMainCategories"
+            :reset-after="false"
+            @select="dispatchActionCategory">
+          </multiselect>
+        </dd>
+      </dl>
+      <sub-categories v-if="showSubCategory" :subCategories="sortSubCategories"></sub-categories>
+    </div>
+  </div>
 </template>
 
 
 <script>
   import Multiselect from 'vue-multiselect'
-	import subcategories from './DropDownSubcategoriesComponent.vue'
+	import subcategories from './DropDownSubcategories.vue'
+  import json from './data.json'
+
 
     export default {
     	name: 'categories',
@@ -41,15 +47,28 @@
               additional: null
             }
           ],
-          categories:[],
+          /*
+          categories: [
+            {
+              id: 1,
+              name: "OOOh",
+              parent_id: null,
+              code: 0,
+              additional: null
+            }
+          ],
+          */
+          categories: json,
           showSubCategory: false
         }
       },
 
     
       methods: {
-        this.showSubCategory = (actionName.id == 2) ? false : true;
-      },
+        dispatchActionCategory(actionName) {
+          this.showSubCategory = (actionName.id == 2) ? false : true;
+        }
+      },  
 
       computed: {
         sortMainCategories: function () {
@@ -67,4 +86,6 @@
       }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style>
+
+</style>

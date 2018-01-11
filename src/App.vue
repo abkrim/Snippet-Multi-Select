@@ -1,7 +1,6 @@
 <template>
 	<div id="app">
-		
-		
+		<drop-down-categories></drop-down-categories>
 	</div>
 </template>
 

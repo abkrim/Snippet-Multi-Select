@@ -3,8 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+//import DropDownCategories from './components/DropDownCategories.vue'
+
+Vue.component('drop-down-categories', require('./components/DropDownCategories.vue'));
 
 Vue.config.productionTip = false
+
+window._ = require('lodash');
 
 /* eslint-disable no-new */
 new Vue({
